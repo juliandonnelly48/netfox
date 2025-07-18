@@ -55,7 +55,7 @@ struct FastRequestResultSecurityCenterView: View {
             .cornerRadius(10)
             
             VStack {
-                HStack(spacing: 5) {
+//                HStack(spacing: 5) {
                     FastRequestResultToggleView(title: model?.scn?.features?[0].name ?? "",
                                                 activeTitle: model?.scn?.features?[0].g_status ?? "",
                                                 disactiveTitle: model?.scn?.features?[0].b_status ?? "",
@@ -96,9 +96,9 @@ struct FastRequestResultSecurityCenterView: View {
                             isSheetAnti = false
                         }
                     }
-                }
+//                }
                 
-                HStack(spacing: 5) {
+//                HStack(spacing: 5) {
                     FastRequestResultToggleView(title: model?.scn?.features?[2].name ?? "",
                                                 activeTitle: model?.scn?.features?[2].g_status ?? "",
                                                 disactiveTitle: model?.scn?.features?[2].b_status ?? "",
@@ -145,9 +145,9 @@ struct FastRequestResultSecurityCenterView: View {
                             }
                         }
                     }
-                }
+//                }
                 
-                HStack(spacing: 5) {
+//                HStack(spacing: 5) {
                     FastRequestResultToggleView(title: model?.scn?.features?[4].name ?? "",
                                                 activeTitle: model?.scn?.features?[4].g_status ?? "",
                                                 disactiveTitle: model?.scn?.features?[4].b_status ?? "",
@@ -195,7 +195,7 @@ struct FastRequestResultSecurityCenterView: View {
                             }
                         }
                     }
-                }
+//                }
             }
         }
         .padding(.all, 5)
