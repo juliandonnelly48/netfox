@@ -117,7 +117,7 @@ public struct InterScreen : View {
         for (index, string) in scanObject.strigs.enumerated() {
             guard !showAlert else { break }
             
-            let randomDelay = TimeInterval(Double.random(in: 1.0...1.5))
+            let randomDelay = 0.1//TimeInterval(Double.random(in: 1.0...1.5))
             
             cumulativeDelay += randomDelay
             
