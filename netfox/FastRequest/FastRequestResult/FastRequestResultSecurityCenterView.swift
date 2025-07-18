@@ -20,6 +20,7 @@ struct FastRequestResultSecurityCenterView: View {
     let tariffButtonTapped: ((Bool) -> Void)
     
     var body: some View {
+        ScrollView(.vertical) {
         VStack(spacing: 5) {
             HStack {
                 ZStack {
@@ -55,152 +56,153 @@ struct FastRequestResultSecurityCenterView: View {
             .cornerRadius(10)
             
             VStack {
-//                HStack(spacing: 5) {
-                    FastRequestResultToggleView(title: model?.scn?.features?[0].name ?? "",
-                                                activeTitle: model?.scn?.features?[0].g_status ?? "",
-                                                disactiveTitle: model?.scn?.features?[0].b_status ?? "",
-                                                backColor: .white,
-                                                isToggleActive: $isSubscriptionActive)
-                    .toggleStyle(SymbolToggleStyle())
-                    .disabled(true)
-                    .onTapGesture {
-                        if !isSubscriptionActive {
-                            completion?(.specialOffer5T0)
-                            tariffButtonTapped(true)
-                        }
+                //                HStack(spacing: 5) {
+                FastRequestResultToggleView(title: model?.scn?.features?[0].name ?? "",
+                                            activeTitle: model?.scn?.features?[0].g_status ?? "",
+                                            disactiveTitle: model?.scn?.features?[0].b_status ?? "",
+                                            backColor: .white,
+                                            isToggleActive: $isSubscriptionActive)
+                .toggleStyle(SymbolToggleStyle())
+                .disabled(true)
+                .onTapGesture {
+                    if !isSubscriptionActive {
+                        completion?(.specialOffer5T0)
+                        tariffButtonTapped(true)
                     }
-                    
-                    FastRequestResultToggleView(title: model?.scn?.features?[1].name ?? "",
-                                                activeTitle: model?.scn?.features?[1].g_status ?? "",
-                                                disactiveTitle: model?.scn?.features?[1].b_status ?? "",
-                                                backColor: .white,
-                                                isToggleActive: $isRealTimeAntivirusOn)
-                    .disabled(!isSubscriptionActive)
-                    .onTapGesture {
-                        if !isSubscriptionActive {
-                            tariffButtonTapped(true)
-                        }
-                    }
-                    .onChange(of: isRealTimeAntivirusOn) { value in
-                        completion?(.specialOffer5T1)
-                        
-                        if isSubscriptionActive, value, NFX.sharedInstance().isSheet {
-                            tariffButtonTapped(false)
-                        } else if isSubscriptionActive, value {
-                            showProgressAction()
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                self.showSuccessAction()
-                            }
-                        } else {
-                            isSheetAnti = false
-                        }
-                    }
-//                }
+                }
                 
-//                HStack(spacing: 5) {
-                    FastRequestResultToggleView(title: model?.scn?.features?[2].name ?? "",
-                                                activeTitle: model?.scn?.features?[2].g_status ?? "",
-                                                disactiveTitle: model?.scn?.features?[2].b_status ?? "",
-                                                backColor: .white,
-                                                isToggleActive: $isBackgroundScanOn)
-                    .disabled(!isSubscriptionActive)
-                    .onTapGesture {
-                        if !isSubscriptionActive {
-                            tariffButtonTapped(true)
-                        }
+                FastRequestResultToggleView(title: model?.scn?.features?[1].name ?? "",
+                                            activeTitle: model?.scn?.features?[1].g_status ?? "",
+                                            disactiveTitle: model?.scn?.features?[1].b_status ?? "",
+                                            backColor: .white,
+                                            isToggleActive: $isRealTimeAntivirusOn)
+                .disabled(!isSubscriptionActive)
+                .onTapGesture {
+                    if !isSubscriptionActive {
+                        tariffButtonTapped(true)
                     }
-                    .onChange(of: isBackgroundScanOn) { value in
-                        completion?(.specialOffer5T2)
-                        
-                        if isSubscriptionActive, value {
-                            showProgressAction()
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                self.showSuccessAction()
-                            }
-                        }
-                    }
+                }
+                .onChange(of: isRealTimeAntivirusOn) { value in
+                    completion?(.specialOffer5T1)
                     
-                    FastRequestResultToggleView(title: model?.scn?.features?[3].name ?? "",
-                                                activeTitle: model?.scn?.features?[3].g_status ?? "",
-                                                disactiveTitle: model?.scn?.features?[3].b_status ?? "",
-                                                backColor: .white,
-                                                isToggleActive: $isSecurityOn)
-                    .disabled(!isSubscriptionActive)
-                    .onTapGesture {
-                        if !isSubscriptionActive {
-                            tariffButtonTapped(true)
-                        }
-                    }
-                    .onChange(of: isSecurityOn) { value in
-                        completion?(.specialOffer5T3)
+                    if isSubscriptionActive, value, NFX.sharedInstance().isSheet {
+                        tariffButtonTapped(false)
+                    } else if isSubscriptionActive, value {
+                        showProgressAction()
                         
-                        if isSubscriptionActive, value {
-                            ProgressHUD.animate(localizeText(forKey: .alertText), interaction: false)
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                self.showSuccessAction()
-                                self.goPrivacy()
-                            }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            self.showSuccessAction()
                         }
+                    } else {
+                        isSheetAnti = false
                     }
-//                }
+                }
+                //                }
                 
-//                HStack(spacing: 5) {
-                    FastRequestResultToggleView(title: model?.scn?.features?[4].name ?? "",
-                                                activeTitle: model?.scn?.features?[4].g_status ?? "",
-                                                disactiveTitle: model?.scn?.features?[4].b_status ?? "",
-                                                backColor: .white,
-                                                isToggleActive: $isPasswordsOn)
-                    .disabled(!isSubscriptionActive)
-                    .onTapGesture {
-                        if !isSubscriptionActive {
-                            tariffButtonTapped(true)
-                        }
+                //                HStack(spacing: 5) {
+                FastRequestResultToggleView(title: model?.scn?.features?[2].name ?? "",
+                                            activeTitle: model?.scn?.features?[2].g_status ?? "",
+                                            disactiveTitle: model?.scn?.features?[2].b_status ?? "",
+                                            backColor: .white,
+                                            isToggleActive: $isBackgroundScanOn)
+                .disabled(!isSubscriptionActive)
+                .onTapGesture {
+                    if !isSubscriptionActive {
+                        tariffButtonTapped(true)
                     }
-                    .onChange(of: isPasswordsOn) { value in
-                        completion?(.specialOffer5T4)
-                        
-                        if isSubscriptionActive, value {
-                            ProgressHUD.animate(localizeText(forKey: .alertText), interaction: false)
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                self.showSuccessAction()
-                                self.goPass()
-                            }
-                        }
-                    }
+                }
+                .onChange(of: isBackgroundScanOn) { value in
+                    completion?(.specialOffer5T2)
                     
-                    FastRequestResultToggleView(title: model?.scn?.features?[5].name ?? "",
-                                                activeTitle: model?.scn?.features?[5].g_status ?? "",
-                                                disactiveTitle: model?.scn?.features?[5].b_status ?? "",
-                                                backColor: .white,
-                                                isToggleActive: $isCacheOn)
-                    .disabled(!isSubscriptionActive)
-                    .onTapGesture {
-                        if !isSubscriptionActive {
-                            tariffButtonTapped(true)
-                        }
-                    }
-                    .onChange(of: isCacheOn) { value in
-                        completion?(.specialOffer5T5)
+                    if isSubscriptionActive, value {
+                        showProgressAction()
                         
-                        if isSubscriptionActive, value {
-                            ProgressHUD.animate(localizeText(forKey: .alertText), interaction: false)
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                self.showSuccessAction()
-                                self.goSafari()
-                            }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            self.showSuccessAction()
                         }
                     }
-//                }
+                }
+                
+                FastRequestResultToggleView(title: model?.scn?.features?[3].name ?? "",
+                                            activeTitle: model?.scn?.features?[3].g_status ?? "",
+                                            disactiveTitle: model?.scn?.features?[3].b_status ?? "",
+                                            backColor: .white,
+                                            isToggleActive: $isSecurityOn)
+                .disabled(!isSubscriptionActive)
+                .onTapGesture {
+                    if !isSubscriptionActive {
+                        tariffButtonTapped(true)
+                    }
+                }
+                .onChange(of: isSecurityOn) { value in
+                    completion?(.specialOffer5T3)
+                    
+                    if isSubscriptionActive, value {
+                        ProgressHUD.animate(localizeText(forKey: .alertText), interaction: false)
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            self.showSuccessAction()
+                            self.goPrivacy()
+                        }
+                    }
+                }
+                //                }
+                
+                //                HStack(spacing: 5) {
+                FastRequestResultToggleView(title: model?.scn?.features?[4].name ?? "",
+                                            activeTitle: model?.scn?.features?[4].g_status ?? "",
+                                            disactiveTitle: model?.scn?.features?[4].b_status ?? "",
+                                            backColor: .white,
+                                            isToggleActive: $isPasswordsOn)
+                .disabled(!isSubscriptionActive)
+                .onTapGesture {
+                    if !isSubscriptionActive {
+                        tariffButtonTapped(true)
+                    }
+                }
+                .onChange(of: isPasswordsOn) { value in
+                    completion?(.specialOffer5T4)
+                    
+                    if isSubscriptionActive, value {
+                        ProgressHUD.animate(localizeText(forKey: .alertText), interaction: false)
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            self.showSuccessAction()
+                            self.goPass()
+                        }
+                    }
+                }
+                
+                FastRequestResultToggleView(title: model?.scn?.features?[5].name ?? "",
+                                            activeTitle: model?.scn?.features?[5].g_status ?? "",
+                                            disactiveTitle: model?.scn?.features?[5].b_status ?? "",
+                                            backColor: .white,
+                                            isToggleActive: $isCacheOn)
+                .disabled(!isSubscriptionActive)
+                .onTapGesture {
+                    if !isSubscriptionActive {
+                        tariffButtonTapped(true)
+                    }
+                }
+                .onChange(of: isCacheOn) { value in
+                    completion?(.specialOffer5T5)
+                    
+                    if isSubscriptionActive, value {
+                        ProgressHUD.animate(localizeText(forKey: .alertText), interaction: false)
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            self.showSuccessAction()
+                            self.goSafari()
+                        }
+                    }
+                }
+                //                }
             }
         }
         .padding(.all, 5)
         .background(Color(red: 239/255, green: 239/255, blue: 239/255))
         .cornerRadius(15)
+    }
     }
     
     private func showProgressAction() {
