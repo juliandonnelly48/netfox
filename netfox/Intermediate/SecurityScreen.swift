@@ -14,17 +14,21 @@ public struct InterScreen : View {
     @State private var displayedAntivirusStrings: [Strig] = []
     @State private var isFinalDisplay: Bool = false
     @Binding var showNextScreen: Bool
+    @Binding var showDeepScreen: Bool
     @Binding var isDisabled: Bool
+    @Binding var isSubscriptionActive: Bool
     private let currentTariff: String
     private let model: AuthorizationOfferModel?
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
     
-    public init(showNextScreen: Binding<Bool>, isDisabled: Binding<Bool>, model: AuthorizationOfferModel?, currentTariff: String, scanObject: Objec, scanTitle: String, secureScreenNumber: Int, completion: @escaping (EventsTitles?) -> Void) {
+    public init(showNextScreen: Binding<Bool>, showDeepScreen: Binding<Bool>, isSubscriptionActive: Binding<Bool>, isDisabled: Binding<Bool>, model: AuthorizationOfferModel?, currentTariff: String, scanObject: Objec, scanTitle: String, secureScreenNumber: Int, completion: @escaping (EventsTitles?) -> Void) {
         self.model = model
         self.currentTariff = currentTariff
+        self._isSubscriptionActive = isSubscriptionActive
         self._showNextScreen = showNextScreen
+        self._showDeepScreen = showDeepScreen
         self._isDisabled = isDisabled
         self.scanObject = scanObject
         self.scanTitle = scanTitle
@@ -74,7 +78,7 @@ public struct InterScreen : View {
             }
         }
         .fullScreenCover(isPresented: $showNextScreen) {
-            FastRequestResultView(isDisabled: $isDisabled, isSubscriptionActive: .constant(true), model: model, currentTariff: currentTariff, completion: completion)
+            FastRequestResultView(isDisabled: $isDisabled, isSubscriptionActive: $isSubscriptionActive, model: model, currentTariff: currentTariff, completion: completion)
         }
     }
     
@@ -294,7 +298,7 @@ private extension InterScreen {
                                     )
                                 )
                                 .foregroundColor(
-                                    scanString.color == "red" ? .red : .black
+                                    scanString.color == "red" ? .red : scanString.color == "green" ? .green : .black
                                 )
                         }
                     }
@@ -430,7 +434,7 @@ private extension InterScreen {
             )
             .padding(.horizontal, 16)
             
-            Text(scanObject.messSbtlt)
+            Text(scanObject.messSbtlt ?? "")
                 .font(.system(size: isIpad ? 16 : 13))
                 .lineLimit(4)
                 .foregroundColor(.black)
@@ -444,6 +448,7 @@ private extension InterScreen {
                 Button {
                     completion(.scan1Action)
                     completion(nil)
+                    showDeepScreen = false
                 } label: {
                     Text(scanObject.messBtn)
                         .font(.system(size: isIpad ? 22 : 17))
@@ -508,7 +513,7 @@ private extension InterScreen {
             )
             .padding(.horizontal, 16)
             
-            Text(scanObject.messSbtlt)
+            Text(scanObject.messSbtlt ?? "")
                 .font(.system(size: isIpad ? 16 : 13))
                 .lineLimit(4)
                 .foregroundColor(.black)
@@ -565,7 +570,7 @@ private extension InterScreen {
             }
             .padding(.horizontal, 16)
             
-            Text(scanObject.messSbtlt)
+            Text(scanObject.messSbtlt ?? "")
                 .font(.system(size: isIpad ? 16 : 13))
                 .lineLimit(4)
                 .foregroundColor(.black)
@@ -635,7 +640,7 @@ private extension InterScreen {
             )
             .padding(.horizontal, 16)
             
-            Text(scanObject.messSbtlt)
+            Text(scanObject.messSbtlt ?? "")
                 .font(.system(size: isIpad ? 16 : 13))
                 .foregroundColor(.black)
                 .multilineTextAlignment(.center)
