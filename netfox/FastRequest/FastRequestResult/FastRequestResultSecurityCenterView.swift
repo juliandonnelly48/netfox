@@ -88,11 +88,9 @@ struct FastRequestResultSecurityCenterView: View {
                         completion?(.specialOffer5T1)
                         
                         if isSubscriptionActive, value {
-                            showProgressAction()
+                            let generator = UINotificationFeedbackGenerator()
                             
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                self.showSuccessAction()
-                            }
+                            generator.notificationOccurred(.success)
                         } else {
                             isSheetAnti = false
                         }
@@ -115,11 +113,9 @@ struct FastRequestResultSecurityCenterView: View {
                         completion?(.specialOffer5T2)
                         
                         if isSubscriptionActive, value {
-                            showProgressAction()
+                            let generator = UINotificationFeedbackGenerator()
                             
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                self.showSuccessAction()
-                            }
+                            generator.notificationOccurred(.success)
                         }
                     }
                     
@@ -138,11 +134,9 @@ struct FastRequestResultSecurityCenterView: View {
                         completion?(.specialOffer5T3)
                         
                         if isSubscriptionActive, value {
-                            showProgressAction()
+                            let generator = UINotificationFeedbackGenerator()
                             
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                self.showSuccessAction()
-                            }
+                            generator.notificationOccurred(.success)
                         }
                     }
                     //                }
@@ -163,11 +157,9 @@ struct FastRequestResultSecurityCenterView: View {
                         completion?(.specialOffer5T4)
                         
                         if isSubscriptionActive, value {
-                            showProgressAction()
+                            let generator = UINotificationFeedbackGenerator()
                             
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                self.showSuccessAction()
-                            }
+                            generator.notificationOccurred(.success)
                         }
                     }
                     
@@ -186,11 +178,14 @@ struct FastRequestResultSecurityCenterView: View {
                         completion?(.specialOffer5T5)
                         
                         if isSubscriptionActive, value {
-                            showProgressAction()
+                            let generator = UINotificationFeedbackGenerator()
                             
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                self.showSuccessAction()
-                            }
+                            generator.notificationOccurred(.success)
+//                            showProgressAction()
+//                            
+//                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                                self.showSuccessAction()
+//                            }
                         }
                     }
                     //                }
@@ -199,6 +194,14 @@ struct FastRequestResultSecurityCenterView: View {
             .padding(.all, 5)
             .background(Color(red: 239/255, green: 239/255, blue: 239/255))
             .cornerRadius(15)
+            
+            FastRequestResultBoxStatsView(title: model?.scn?.stats?.statBtnTitle ?? "",
+                                          subttitle: model?.scn?.stats?.statBtnSubtitle ?? "",
+                                          imageUrl: model?.scn?.banner_icon ?? "", //!
+                                          backColor: Color(red: 239/255, green: 239/255, blue: 239/255))
+            .onTapGesture {
+                showStatistics = true
+            }
         }
     }
     
@@ -208,73 +211,5 @@ struct FastRequestResultSecurityCenterView: View {
     
     private func showSuccessAction() {
         ProgressHUD.success(interaction: false)
-    }
-    
-    private func goPass() {
-        DispatchQueue.main.async {
-            let url: URL
-            
-            if #available(iOS 18, *) {
-                url = URL(string: "App-Prefs:com.apple.Passwords")!
-            } else {
-                url = URL(string: "App-Prefs:PASSWORDS")!
-            }
-            
-            guard UIApplication.shared.canOpenURL(url) else {
-                completion?(.specialOffer5Error)
-                
-                return
-            }
-            
-            completion?(.specialOffer5T5Settings)
-            UIApplication.shared.open(url)
-        }
-    }
-    
-    private func goPrivacy() {
-        DispatchQueue.main.async {
-            let url: URL
-            
-            if #available(iOS 18, *) {
-                url = URL(string: "App-Prefs:Privacy")!
-            } else {
-                url = URL(string: "App-Prefs:Privacy")!
-            }
-            
-            guard UIApplication.shared.canOpenURL(url) else {
-                completion?(.specialOffer5Error)
-                
-                return
-            }
-            
-            completion?(.specialOffer5T3Settings)
-            UIApplication.shared.open(url)
-        }
-    }
-    
-    private func goSafari() {
-        DispatchQueue.main.async {
-            let url: URL
-            
-            if #available(iOS 18, *) {
-                url = URL(string: "App-Prefs:com.apple.mobilesafari&path=CLEAR_HISTORY_AND_DATA")!
-            }
-            else if #available(iOS 17.6, *) {
-                url = URL(string: "App-Prefs:SAFARI&path=CLEAR_HISTORY_AND_DATA")!
-            }
-            else {
-                url = URL(string: "App-Prefs:Safari&path=CLEAR_HISTORY_AND_DATA")!
-                
-            }
-            
-            guard UIApplication.shared.canOpenURL(url) else {
-                completion?(.specialOffer5Error)
-                
-                return
-            }
-            
-            completion?(.specialOffer5T4Settings)
-            UIApplication.shared.open(url)
-        }
     }
 }
