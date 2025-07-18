@@ -121,6 +121,8 @@ public struct ScnModel: Codable {
     var subtitle_proc        : String?
     var title_anim_proc        : String?
     var subtitle_anim_proc    : String?
+    var title_disable            : String?
+    var title_on            : String?
     var title_compl            : String?
     var subtitle_compl        : String?
     var title_anim_compl    : String?

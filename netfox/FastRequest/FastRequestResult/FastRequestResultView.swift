@@ -34,9 +34,6 @@ public struct FastRequestResultView: View {
             myView()
                 .background(.white)
                 .navigationBarHidden(true)
-                .sheet(isPresented: $showingSheet) {
-                    SuperRequestView(isDisabled: $isDisabled, currentTariff: currentTariff, completion: completion)
-                }
                 .protectScreenshot()
                 .ignoresSafeArea(.all)
                 .onAppear {
@@ -61,9 +58,6 @@ public struct FastRequestResultView: View {
             myView()
                 .background(.white)
                 .navigationBarHidden(true)
-                .sheet(isPresented: $showingSheet) {
-                    SuperRequestView(isDisabled: $isDisabled, currentTariff: currentTariff, completion: completion)
-                }
                 .onAppear {
                     completion?(.specialOffer5Show)
                 }
@@ -89,7 +83,7 @@ public struct FastRequestResultView: View {
         ZStack {
             ZStack {
                 VStack() {
-                    Text(isProtect ? String(format: model?.scn?.title_compl ?? "", localizeText(forKey: .subsOn)) : String(format: model?.scn?.title_compl ?? "", localizeText(forKey: .subsDis)))
+                    Text(isProtect ? String(format: model?.scn?.title_compl ?? "", model?.scn?.title_on ?? "") : String(format: model?.scn?.title_compl ?? "", model?.scn?.title_disable ?? ""))
                         .font(.system(size: Constants.smallScreen ? 20 : 33, weight: .bold, design: .default))
                         .foregroundStyle(.black)
                         .padding(.top, Constants.smallScreen ? 5 : (Constants.miniScreen ? 15 : 50))
@@ -301,15 +295,6 @@ func localizeText(forKey key: KeyForLocale) -> String {
 }
 
 enum KeyForLocale: String  {
-    case now
-    case subsOff
     case subsOn
-    case subsPrice
-    case subsTitle
-    case subsSub
-    case subsCancel
-    case subsBuy
     case subsDis
-    case subsActive
-    case alertText
 }
