@@ -17,6 +17,8 @@ struct FastRequestResultToggleView: View {
                         .font(.system(size: Constants.smallScreen ? 9 : 10, weight: .medium, design: .default))
                         .foregroundColor(Color(red: 103/255, green: 103/255, blue: 103/255))
                     
+                    Spacer()
+                    
                     HStack(spacing: 5) {
                         Image(isToggleActive ? .screen7GreenMark : .screen7RedMark)
                             .frame(width: 12, height: 12)
