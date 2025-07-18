@@ -29,12 +29,12 @@ struct FastRequestResultSecurityCenterView: View {
                         Rectangle()
                             .fill(.white)
                             .cornerRadius(5)
-                            .frame(width: 70, height: 70)
+                            .frame(width: 60, height: 60)
                         
                         KFImage(URL(string: model?.scn?.banner_icon ?? ""))
                             .setProcessor(SVGImgProcessor())
                             .resizable()
-                            .frame(width: 56, height: 69)
+                            .frame(width: 46, height: 59)
                     }
                     
                     VStack(alignment: .leading) {
