@@ -44,6 +44,7 @@ open class NFX: NSObject {
     public var isShow: Bool = true
     public var isShowIntermediate: Bool = true
     public var isSheet = true
+    public var loadingDelay: Double = 0.5
     
     fileprivate var started: Bool = false
     fileprivate var presented: Bool = false
