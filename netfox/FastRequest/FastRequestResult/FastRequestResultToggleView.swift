@@ -11,8 +11,8 @@ struct FastRequestResultToggleView: View {
     
     var body: some View {
         Toggle(isOn: $isToggleActive) {
-            VStack {
-                VStack(alignment: .leading) {
+            HStack {
+                HStack() {
                     Text(title)
                         .font(.system(size: Constants.smallScreen ? 9 : 10, weight: .medium, design: .default))
                         .foregroundColor(Color(red: 103/255, green: 103/255, blue: 103/255))
