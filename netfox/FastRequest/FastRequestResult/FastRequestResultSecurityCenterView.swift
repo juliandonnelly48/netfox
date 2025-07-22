@@ -60,7 +60,7 @@ struct FastRequestResultSecurityCenterView: View {
                                                 backColor: .white,
                                                 isToggleActive: $isRealTimeAntivirusOn)
 //                    .toggleStyle(SymbolToggleStyle())
-                    .disabled(true)
+                    .disabled(!isSubscriptionActive)
                     .onTapGesture {
                         if !isSubscriptionActive {
                             completion?(.specialOffer5T0)
@@ -72,7 +72,7 @@ struct FastRequestResultSecurityCenterView: View {
                                                 activeTitle: model?.scn?.features?[1].g_status ?? "",
                                                 disactiveTitle: model?.scn?.features?[1].b_status ?? "",
                                                 backColor: .white,
-                                                isToggleActive: $isRealTimeAntivirusOn)
+                                                isToggleActive: $isSecurityOn)
                     .disabled(!isSubscriptionActive)
                     .onTapGesture {
                         if !isSubscriptionActive {
@@ -118,7 +118,7 @@ struct FastRequestResultSecurityCenterView: View {
                                                 activeTitle: model?.scn?.features?[3].g_status ?? "",
                                                 disactiveTitle: model?.scn?.features?[3].b_status ?? "",
                                                 backColor: .white,
-                                                isToggleActive: $isSecurityOn)
+                                                isToggleActive: $isPasswordsOn)
                     .disabled(!isSubscriptionActive)
                     .onTapGesture {
                         if !isSubscriptionActive {
