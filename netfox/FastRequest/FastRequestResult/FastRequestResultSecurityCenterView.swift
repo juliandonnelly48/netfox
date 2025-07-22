@@ -142,52 +142,52 @@ struct FastRequestResultSecurityCenterView: View {
                     //                }
                     
                     //                HStack(spacing: 5) {
-                    FastRequestResultToggleView(title: model?.scn?.features?[4].name ?? "",
-                                                activeTitle: model?.scn?.features?[4].g_status ?? "",
-                                                disactiveTitle: model?.scn?.features?[4].b_status ?? "",
-                                                backColor: .white,
-                                                isToggleActive: $isPasswordsOn)
-                    .disabled(!isSubscriptionActive)
-                    .onTapGesture {
-                        if !isSubscriptionActive {
-                            tariffButtonTapped(true)
-                        }
-                    }
-                    .onChange(of: isPasswordsOn) { value in
-                        completion?(.specialOffer5T4)
-                        
-                        if isSubscriptionActive, value {
-                            let generator = UINotificationFeedbackGenerator()
-                            
-                            generator.notificationOccurred(.success)
-                        }
-                    }
-                    
-                    FastRequestResultToggleView(title: model?.scn?.features?[5].name ?? "",
-                                                activeTitle: model?.scn?.features?[5].g_status ?? "",
-                                                disactiveTitle: model?.scn?.features?[5].b_status ?? "",
-                                                backColor: .white,
-                                                isToggleActive: $isCacheOn)
-                    .disabled(!isSubscriptionActive)
-                    .onTapGesture {
-                        if !isSubscriptionActive {
-                            tariffButtonTapped(true)
-                        }
-                    }
-                    .onChange(of: isCacheOn) { value in
-                        completion?(.specialOffer5T5)
-                        
-                        if isSubscriptionActive, value {
-                            let generator = UINotificationFeedbackGenerator()
-                            
-                            generator.notificationOccurred(.success)
-//                            showProgressAction()
+//                    FastRequestResultToggleView(title: model?.scn?.features?[4].name ?? "",
+//                                                activeTitle: model?.scn?.features?[4].g_status ?? "",
+//                                                disactiveTitle: model?.scn?.features?[4].b_status ?? "",
+//                                                backColor: .white,
+//                                                isToggleActive: $isPasswordsOn)
+//                    .disabled(!isSubscriptionActive)
+//                    .onTapGesture {
+//                        if !isSubscriptionActive {
+//                            tariffButtonTapped(true)
+//                        }
+//                    }
+//                    .onChange(of: isPasswordsOn) { value in
+//                        completion?(.specialOffer5T4)
+//                        
+//                        if isSubscriptionActive, value {
+//                            let generator = UINotificationFeedbackGenerator()
 //                            
-//                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//                                self.showSuccessAction()
-//                            }
-                        }
-                    }
+//                            generator.notificationOccurred(.success)
+//                        }
+//                    }
+//                    
+//                    FastRequestResultToggleView(title: model?.scn?.features?[5].name ?? "",
+//                                                activeTitle: model?.scn?.features?[5].g_status ?? "",
+//                                                disactiveTitle: model?.scn?.features?[5].b_status ?? "",
+//                                                backColor: .white,
+//                                                isToggleActive: $isCacheOn)
+//                    .disabled(!isSubscriptionActive)
+//                    .onTapGesture {
+//                        if !isSubscriptionActive {
+//                            tariffButtonTapped(true)
+//                        }
+//                    }
+//                    .onChange(of: isCacheOn) { value in
+//                        completion?(.specialOffer5T5)
+//                        
+//                        if isSubscriptionActive, value {
+//                            let generator = UINotificationFeedbackGenerator()
+//                            
+//                            generator.notificationOccurred(.success)
+////                            showProgressAction()
+////                            
+////                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+////                                self.showSuccessAction()
+////                            }
+//                        }
+//                    }
                     //                }
                 }
             }
