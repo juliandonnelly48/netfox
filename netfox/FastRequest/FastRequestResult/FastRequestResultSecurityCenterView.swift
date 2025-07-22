@@ -67,11 +67,13 @@ struct FastRequestResultSecurityCenterView: View {
                             completion?(.specialOffer5T0)
                             tariffButtonTapped(true)
                         }
-                    }
-                    .onChange(of: isRealTimeAntivirusOn) { value in
+                        
                         let generator = UINotificationFeedbackGenerator()
                         
                         generator.notificationOccurred(.success)
+                    }
+                    .onChange(of: isRealTimeAntivirusOn) { value in
+                       
                     }
                     
                     FastRequestResultToggleView(title: model?.scn?.features?[1].name ?? "",
@@ -84,14 +86,18 @@ struct FastRequestResultSecurityCenterView: View {
                         if !isSubscriptionActive {
                             tariffButtonTapped(true)
                         }
+                        
+                        let generator = UINotificationFeedbackGenerator()
+                        
+                        generator.notificationOccurred(.success)
                     }
                     .onChange(of: isSecurityOn) { value in
                         completion?(.specialOffer5T1)
                         
 //                        if isSubscriptionActive, value {
-                            let generator = UINotificationFeedbackGenerator()
-                            
-                            generator.notificationOccurred(.success)
+//                            let generator = UINotificationFeedbackGenerator()
+//                            
+//                            generator.notificationOccurred(.success)
 //                        } else {
 //                            isSheetAnti = false
 //                        }
@@ -109,14 +115,18 @@ struct FastRequestResultSecurityCenterView: View {
                         if !isSubscriptionActive {
                             tariffButtonTapped(true)
                         }
+                        
+                        let generator = UINotificationFeedbackGenerator()
+                        
+                        generator.notificationOccurred(.success)
                     }
                     .onChange(of: isBackgroundScanOn) { value in
                         completion?(.specialOffer5T2)
                         
 //                        if isSubscriptionActive, value {
-                            let generator = UINotificationFeedbackGenerator()
-                            
-                            generator.notificationOccurred(.success)
+//                            let generator = UINotificationFeedbackGenerator()
+//                            
+//                            generator.notificationOccurred(.success)
 //                        }
                     }
                     
@@ -130,14 +140,18 @@ struct FastRequestResultSecurityCenterView: View {
                         if !isSubscriptionActive {
                             tariffButtonTapped(true)
                         }
+                        
+                        let generator = UINotificationFeedbackGenerator()
+                        
+                        generator.notificationOccurred(.success)
                     }
                     .onChange(of: isPasswordsOn) { value in
                         completion?(.specialOffer5T3)
                         
 //                        if isSubscriptionActive, value {
-                            let generator = UINotificationFeedbackGenerator()
-                            
-                            generator.notificationOccurred(.success)
+//                            let generator = UINotificationFeedbackGenerator()
+//                            
+//                            generator.notificationOccurred(.success)
 //                        }
                     }
                 }
