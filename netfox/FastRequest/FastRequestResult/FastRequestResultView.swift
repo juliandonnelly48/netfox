@@ -4,11 +4,10 @@ import ScreenShield
 
 public struct FastRequestResultView: View {
     @AppStorage("isRealTimeAntivirusOn") private var isRealTimeAntivirusOn = false
-    @AppStorage("isBackgroundScanOn") private var isBackgroundScanOn = false
     @AppStorage("isSecurityOn") private var isSecurityOn = false
+    @AppStorage("isBackgroundScanOn") private var isBackgroundScanOn = false
     @AppStorage("isPasswordsOn") private var isPasswordsOn = false
-    @AppStorage("isCacheOn") private var isCacheOn = false
-    @AppStorage("isSheetAnti") private var isSheetAnti = false
+
     @Binding var isDisabled: Bool
     @Binding var isSubscriptionActive: Bool
     @State private var isProtect = false
@@ -138,11 +137,9 @@ public struct FastRequestResultView: View {
                     FastRequestResultSecurityCenterView(
                         isSubscriptionActive: $isSubscriptionActive,
                         isRealTimeAntivirusOn: $isRealTimeAntivirusOn,
-                        isBackgroundScanOn: $isBackgroundScanOn,
                         isSecurityOn: $isSecurityOn,
+                        isBackgroundScanOn: $isBackgroundScanOn,
                         isPasswordsOn: $isPasswordsOn,
-                        isCacheOn: $isCacheOn,
-                        isSheetAnti: $isSheetAnti,
                         showStatistics: $showStatistics,
                         completion: completion,
                         model: model
@@ -159,9 +156,9 @@ public struct FastRequestResultView: View {
                     Spacer()
                 }
                 
-                if showSheetView {
-                    SheetView(showSheetView: $showSheetView, isSheetAnti: $isSheetAnti, model: model?.sheet, completion: completion)
-                }
+//                if showSheetView {
+//                    SheetView(showSheetView: $showSheetView, isSheetAnti: $isSheetAnti, model: model?.sheet, completion: completion)
+//                }
             }
             
             if showStatistics {
@@ -210,9 +207,8 @@ public struct FastRequestResultView: View {
     }
     
     private func circleProgress() -> CGFloat {
-        let antivirusBool = NFX.sharedInstance().isSheet ? isSheetAnti : isRealTimeAntivirusOn
-        let togglesOn = [isSubscriptionActive, antivirusBool, isBackgroundScanOn, isSecurityOn, isPasswordsOn, isCacheOn].filter { $0 }.count
-        let result = CGFloat(togglesOn) / 6
+        let togglesOn = [isSubscriptionActive, isBackgroundScanOn, isSecurityOn, isPasswordsOn].filter { $0 }.count
+        let result = CGFloat(togglesOn) / 4
         
         DispatchQueue.main.async {
             isProtect = result == 1

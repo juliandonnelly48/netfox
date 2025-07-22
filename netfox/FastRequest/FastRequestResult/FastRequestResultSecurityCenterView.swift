@@ -6,14 +6,9 @@ import ProgressHUD
 struct FastRequestResultSecurityCenterView: View {
     @Binding var isSubscriptionActive: Bool
     @Binding var isRealTimeAntivirusOn: Bool
-    
-    @Binding var isBackgroundScanOn: Bool
     @Binding var isSecurityOn: Bool
-    
+    @Binding var isBackgroundScanOn: Bool
     @Binding var isPasswordsOn: Bool
-    @Binding var isCacheOn: Bool
-    
-    @Binding var isSheetAnti: Bool
     
     @Binding var showStatistics: Bool
     
@@ -63,8 +58,8 @@ struct FastRequestResultSecurityCenterView: View {
                                                 activeTitle: model?.scn?.features?[0].g_status ?? "",
                                                 disactiveTitle: model?.scn?.features?[0].b_status ?? "",
                                                 backColor: .white,
-                                                isToggleActive: $isSubscriptionActive)
-                    .toggleStyle(SymbolToggleStyle())
+                                                isToggleActive: $isRealTimeAntivirusOn)
+//                    .toggleStyle(SymbolToggleStyle())
                     .disabled(true)
                     .onTapGesture {
                         if !isSubscriptionActive {
@@ -92,7 +87,7 @@ struct FastRequestResultSecurityCenterView: View {
                             
                             generator.notificationOccurred(.success)
                         } else {
-                            isSheetAnti = false
+//                            isSheetAnti = false
                         }
                     }
                     //                }
