@@ -207,7 +207,7 @@ public struct FastRequestResultView: View {
     }
     
     private func circleProgress() -> CGFloat {
-        let togglesOn = [isSubscriptionActive, isBackgroundScanOn, isSecurityOn, isPasswordsOn].filter { $0 }.count
+        let togglesOn = [isRealTimeAntivirusOn, isBackgroundScanOn, isSecurityOn, isPasswordsOn].filter { $0 }.count
         let result = CGFloat(togglesOn) / 4
         
         DispatchQueue.main.async {
