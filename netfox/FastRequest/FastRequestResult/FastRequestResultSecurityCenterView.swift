@@ -94,7 +94,7 @@ struct FastRequestResultSecurityCenterView: View {
                             generator.notificationOccurred(.success)
 //                        } else {
 //                            isSheetAnti = false
-                        }
+//                        }
                     }
                     //                }
                     
