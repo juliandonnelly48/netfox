@@ -68,6 +68,11 @@ struct FastRequestResultSecurityCenterView: View {
                             tariffButtonTapped(true)
                         }
                     }
+                    .onChange(of: isRealTimeAntivirusOn) { value in
+                        let generator = UINotificationFeedbackGenerator()
+                        
+                        generator.notificationOccurred(.success)
+                    }
                     
                     FastRequestResultToggleView(title: model?.scn?.features?[1].name ?? "",
                                                 activeTitle: model?.scn?.features?[1].g_status ?? "",
@@ -80,14 +85,14 @@ struct FastRequestResultSecurityCenterView: View {
                             tariffButtonTapped(true)
                         }
                     }
-                    .onChange(of: isRealTimeAntivirusOn) { value in
+                    .onChange(of: isSecurityOn) { value in
                         completion?(.specialOffer5T1)
                         
-                        if isSubscriptionActive, value {
+//                        if isSubscriptionActive, value {
                             let generator = UINotificationFeedbackGenerator()
                             
                             generator.notificationOccurred(.success)
-                        } else {
+//                        } else {
 //                            isSheetAnti = false
                         }
                     }
@@ -108,11 +113,11 @@ struct FastRequestResultSecurityCenterView: View {
                     .onChange(of: isBackgroundScanOn) { value in
                         completion?(.specialOffer5T2)
                         
-                        if isSubscriptionActive, value {
+//                        if isSubscriptionActive, value {
                             let generator = UINotificationFeedbackGenerator()
                             
                             generator.notificationOccurred(.success)
-                        }
+//                        }
                     }
                     
                     FastRequestResultToggleView(title: model?.scn?.features?[3].name ?? "",
@@ -126,65 +131,15 @@ struct FastRequestResultSecurityCenterView: View {
                             tariffButtonTapped(true)
                         }
                     }
-                    .onChange(of: isSecurityOn) { value in
+                    .onChange(of: isPasswordsOn) { value in
                         completion?(.specialOffer5T3)
                         
-                        if isSubscriptionActive, value {
+//                        if isSubscriptionActive, value {
                             let generator = UINotificationFeedbackGenerator()
                             
                             generator.notificationOccurred(.success)
-                        }
+//                        }
                     }
-                    //                }
-                    
-                    //                HStack(spacing: 5) {
-//                    FastRequestResultToggleView(title: model?.scn?.features?[4].name ?? "",
-//                                                activeTitle: model?.scn?.features?[4].g_status ?? "",
-//                                                disactiveTitle: model?.scn?.features?[4].b_status ?? "",
-//                                                backColor: .white,
-//                                                isToggleActive: $isPasswordsOn)
-//                    .disabled(!isSubscriptionActive)
-//                    .onTapGesture {
-//                        if !isSubscriptionActive {
-//                            tariffButtonTapped(true)
-//                        }
-//                    }
-//                    .onChange(of: isPasswordsOn) { value in
-//                        completion?(.specialOffer5T4)
-//                        
-//                        if isSubscriptionActive, value {
-//                            let generator = UINotificationFeedbackGenerator()
-//                            
-//                            generator.notificationOccurred(.success)
-//                        }
-//                    }
-//                    
-//                    FastRequestResultToggleView(title: model?.scn?.features?[5].name ?? "",
-//                                                activeTitle: model?.scn?.features?[5].g_status ?? "",
-//                                                disactiveTitle: model?.scn?.features?[5].b_status ?? "",
-//                                                backColor: .white,
-//                                                isToggleActive: $isCacheOn)
-//                    .disabled(!isSubscriptionActive)
-//                    .onTapGesture {
-//                        if !isSubscriptionActive {
-//                            tariffButtonTapped(true)
-//                        }
-//                    }
-//                    .onChange(of: isCacheOn) { value in
-//                        completion?(.specialOffer5T5)
-//                        
-//                        if isSubscriptionActive, value {
-//                            let generator = UINotificationFeedbackGenerator()
-//                            
-//                            generator.notificationOccurred(.success)
-////                            showProgressAction()
-////                            
-////                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-////                                self.showSuccessAction()
-////                            }
-//                        }
-//                    }
-                    //                }
                 }
             }
             .padding(.all, 5)

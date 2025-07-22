@@ -14,7 +14,7 @@ struct FastRequestResultToggleView: View {
             HStack {
                 HStack() {
                     Text(title)
-                        .font(.system(size: Constants.smallScreen ? 12 : 14, weight: .medium, design: .default))
+                        .font(.system(size: Constants.smallScreen ? 11 : 13, weight: .medium, design: .default))
                         .foregroundColor(Color(red: 103/255, green: 103/255, blue: 103/255))
                     
                     Spacer()
