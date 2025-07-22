@@ -128,7 +128,7 @@ public struct FastRequestResultView: View {
                                 .multilineTextAlignment(.center)
                         }
                     }
-                    .padding(.bottom, 5)
+                    .padding(.bottom, 10)
                     .onTapGesture {
                         showDeepScreen = true
                     }
