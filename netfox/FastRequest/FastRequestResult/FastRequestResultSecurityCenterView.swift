@@ -11,6 +11,7 @@ struct FastRequestResultSecurityCenterView: View {
     @Binding var isPasswordsOn: Bool
     
     @Binding var showStatistics: Bool
+    @Binding var isProtected: Bool
     
     let completion: ((EventsTitles?) -> Void)?
     let model: AuthorizationOfferModel?
@@ -38,7 +39,7 @@ struct FastRequestResultSecurityCenterView: View {
                             .foregroundStyle(.black)
                             .multilineTextAlignment(.leading)
                         
-                        Text(model?.scn?.banner_subtitle ?? "")
+                        Text(isProtected ? model?.scn?.subtitle_unp_paid ?? "" : model?.scn?.subtitle_unp ?? "")
                             .font(.system(size: 12, weight: .medium, design: .default))
                             .foregroundStyle(Color(red: 156/255, green: 156/255, blue: 156/255))
                             .multilineTextAlignment(.leading)

@@ -83,17 +83,16 @@ public struct FastRequestResultView: View {
             ZStack {
                 VStack() {
                     Text(isProtect ? String(format: model?.scn?.title_compl ?? "", model?.scn?.title_on ?? "") : String(format: model?.scn?.title_compl ?? "", model?.scn?.title_disable ?? ""))
-                        .font(.system(size: Constants.smallScreen ? 20 : 33, weight: .bold, design: .default))
+                        .font(.system(size: Constants.smallScreen ? 18 : 30, weight: .bold, design: .default))
                         .foregroundStyle(.black)
-//                        .padding(.top, Constants.smallScreen ? 5 : (Constants.miniScreen ? 15 : 50))
                     
-                    Text(isProtect ? model?.scn?.subtitle_compl ?? "" : model?.scn?.subtitle_unp ?? "")
-                        .font(.system(size: Constants.smallScreen ? 14 : 16, weight: .medium, design: .default))
-                            .foregroundStyle(Color(red: 156/255, green: 156/255, blue: 156/255))
-                            .multilineTextAlignment(.center)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .frame(maxWidth: .infinity)
-                            .padding(.horizontal)
+//                    Text(isProtect ? model?.scn?.subtitle_compl ?? "" : model?.scn?.subtitle_unp ?? "")
+//                        .font(.system(size: Constants.smallScreen ? 14 : 16, weight: .medium, design: .default))
+//                            .foregroundStyle(Color(red: 156/255, green: 156/255, blue: 156/255))
+//                            .multilineTextAlignment(.center)
+//                            .fixedSize(horizontal: false, vertical: true)
+//                            .frame(maxWidth: .infinity)
+//                            .padding(.horizontal)
                     
                     ZStack {
                         if isProtect {
@@ -141,6 +140,7 @@ public struct FastRequestResultView: View {
                         isBackgroundScanOn: $isBackgroundScanOn,
                         isPasswordsOn: $isPasswordsOn,
                         showStatistics: $showStatistics,
+                        isProtected: $isProtect,
                         completion: completion,
                         model: model
                     ) { isTariif in
