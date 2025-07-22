@@ -85,7 +85,7 @@ public struct FastRequestResultView: View {
                     Text(isProtect ? String(format: model?.scn?.title_compl ?? "", model?.scn?.title_on ?? "") : String(format: model?.scn?.title_compl ?? "", model?.scn?.title_disable ?? ""))
                         .font(.system(size: Constants.smallScreen ? 20 : 33, weight: .bold, design: .default))
                         .foregroundStyle(.black)
-                        .padding(.top, Constants.smallScreen ? 5 : (Constants.miniScreen ? 15 : 50))
+//                        .padding(.top, Constants.smallScreen ? 5 : (Constants.miniScreen ? 15 : 50))
                     
                     Text(isProtect ? model?.scn?.subtitle_compl ?? "" : model?.scn?.subtitle_unp ?? "")
                         .font(.system(size: Constants.smallScreen ? 14 : 16, weight: .medium, design: .default))
