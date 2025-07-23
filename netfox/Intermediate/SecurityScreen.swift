@@ -447,7 +447,7 @@ private extension InterScreen {
                 
                 Button {
                     completion(.scan1Action)
-                    if !isIpad {
+                    if !isSubscriptionActive {
                         completion(nil)
                     }
                     
