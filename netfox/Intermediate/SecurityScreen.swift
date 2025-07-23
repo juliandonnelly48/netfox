@@ -447,7 +447,10 @@ private extension InterScreen {
                 
                 Button {
                     completion(.scan1Action)
-                    completion(nil)
+                    if !isIpad {
+                        completion(nil)
+                    }
+                    
                     showDeepScreen = false
                 } label: {
                     Text(scanObject.messBtn)
