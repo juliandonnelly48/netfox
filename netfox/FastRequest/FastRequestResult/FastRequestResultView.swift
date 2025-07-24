@@ -130,6 +130,9 @@ public struct FastRequestResultView: View {
                     }
                     .padding(.bottom, 10)
                     .onTapGesture {
+                        let generator = UINotificationFeedbackGenerator()
+                        
+                        generator.notificationOccurred(.success)
                         showDeepScreen = true
                     }
                     
