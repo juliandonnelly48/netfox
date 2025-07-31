@@ -110,13 +110,22 @@ public struct FastRequest2View: View {
                 .onAppear {
                     startAnimatingList()
                 }
-                .onReceive(Just(displayedItems.count)) { _ in
-                    if let lastIndex = displayedItems.indices.last {
-                        withAnimation {
-                            proxy.scrollTo(lastIndex - 1, anchor: .bottom)
+//                .onReceive(Just(displayedItems.count)) { _ in
+//                    if let lastIndex = displayedItems.indices.last {
+//                        withAnimation {
+//                            proxy.scrollTo(lastIndex - 1, anchor: .bottom)
+//                        }
+//                    }
+//                }
+                .onChange(of: displayedItems) { newItems in
+                        guard let lastIndex = newItems.indices.last else { return }
+                        let targetIndex = max(0, lastIndex - 1)
+                        DispatchQueue.main.async {
+                            withAnimation {
+                                proxy.scrollTo(targetIndex, anchor: .bottom)
+                            }
                         }
                     }
-                }
             }
         }
     }
