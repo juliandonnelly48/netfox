@@ -112,9 +112,9 @@ public struct FastRequest2View: View {
                 }
                 .onReceive(Just(displayedItems.count)) { _ in
                     if let lastIndex = displayedItems.indices.last {
-//                        withAnimation {
-                            proxy.scrollTo(lastIndex, anchor: .bottom)
-//                        }
+                        withAnimation {
+                            proxy.scrollTo(lastIndex - 1, anchor: .bottom)
+                        }
                     }
                 }
             }
