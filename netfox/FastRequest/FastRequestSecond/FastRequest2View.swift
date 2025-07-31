@@ -15,7 +15,7 @@ public struct FastRequest2View: View {
     @Binding var isSubscriptionActive: Bool
     private let completion: ((EventsTitles?) -> Void)
     
-    @State private var displayedItems: [DisplayItem] = []
+    @State private var displayedItems: [String] = []
     @State private var colorsForItems: [Color] = []
     @State private var timer: Timer?
     
@@ -92,12 +92,12 @@ public struct FastRequest2View: View {
             
             ScrollViewReader { proxy in
                 List {
-                    ForEach(displayedItems) { item in
-                        Text(item.text)
+                    ForEach(displayedItems.indices, id: \.self) { index in
+                        Text(displayedItems[index])
                             .font(.system(size: 14, weight: .regular, design: .default))
-                            .foregroundColor(.red)
+                            .foregroundColor(colorsForItems[index])
                             .transition(.slide)
-                            .id(item.id)
+                            .id(index)
                     }
                     .listRowBackground(Color(red: 238/255, green: 238/255, blue: 239/255))
                 }
@@ -110,22 +110,13 @@ public struct FastRequest2View: View {
                 .onAppear {
                     startAnimatingList()
                 }
-//                .onReceive(Just(displayedItems.count)) { _ in
-//                    if let lastIndex = displayedItems.indices.last {
-//                        withAnimation {
-//                            proxy.scrollTo(lastIndex - 1, anchor: .bottom)
-//                        }
-//                    }
-//                }
-                .onChange(of: displayedItems) { newItems in
-                        guard let lastIndex = newItems.last else { return }
-//                        let targetIndex = max(0, lastIndex - 1)
-                        DispatchQueue.main.async {
-                            withAnimation {
-                                proxy.scrollTo(lastIndex.id, anchor: .bottom)
-                            }
+                .onReceive(Just(displayedItems.count)) { _ in
+                    if let lastIndex = displayedItems.indices.last {
+                        withAnimation {
+                            proxy.scrollTo(lastIndex, anchor: .bottom)
                         }
                     }
+                }
             }
         }
     }
@@ -145,13 +136,11 @@ public struct FastRequest2View: View {
             
             withAnimation {
                 let newItems = mockArr[currentIndex..<nextIndex]
-                var newArray: [DisplayItem] = []
+                var newArray: [String] = []
                 for item in newItems {
                     let locDate = randomDate()
                     let finalStr = locDate + " " + item
-                    let item = DisplayItem(text: finalStr)
-                    
-                    newArray.append(item)
+                    newArray.append(finalStr)
                 }
                 displayedItems.append(contentsOf: newArray)
                 
@@ -188,9 +177,4 @@ public struct FastRequest2View: View {
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return formatter.string(from: finalDate)
     }
-}
-
-struct DisplayItem: Identifiable, Equatable {
-    let id = UUID()
-    let text: String
 }
