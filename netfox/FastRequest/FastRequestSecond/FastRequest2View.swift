@@ -15,7 +15,7 @@ public struct FastRequest2View: View {
     @Binding var isSubscriptionActive: Bool
     private let completion: ((EventsTitles?) -> Void)
     
-    @State private var displayedItems: [String] = []
+    @State private var displayedItems: [DisplayItem] = []
     @State private var colorsForItems: [Color] = []
     @State private var timer: Timer?
     
@@ -92,12 +92,12 @@ public struct FastRequest2View: View {
             
             ScrollViewReader { proxy in
                 List {
-                    ForEach(displayedItems.indices, id: \.self) { index in
-                        Text(displayedItems[index])
+                    ForEach(displayedItems) { item in
+                        Text(item.text)
                             .font(.system(size: 14, weight: .regular, design: .default))
-                            .foregroundColor(colorsForItems[index])
+                            .foregroundColor(.red)
                             .transition(.slide)
-                            .id(index)
+                            .id(item.id)
                     }
                     .listRowBackground(Color(red: 238/255, green: 238/255, blue: 239/255))
                 }
@@ -118,11 +118,11 @@ public struct FastRequest2View: View {
 //                    }
 //                }
                 .onChange(of: displayedItems) { newItems in
-                        guard let lastIndex = newItems.indices.last else { return }
-                        let targetIndex = max(0, lastIndex - 1)
+                        guard let lastIndex = newItems.last else { return }
+//                        let targetIndex = max(0, lastIndex - 1)
                         DispatchQueue.main.async {
                             withAnimation {
-                                proxy.scrollTo(targetIndex, anchor: .bottom)
+                                proxy.scrollTo(lastIndex.id, anchor: .bottom)
                             }
                         }
                     }
@@ -145,11 +145,13 @@ public struct FastRequest2View: View {
             
             withAnimation {
                 let newItems = mockArr[currentIndex..<nextIndex]
-                var newArray: [String] = []
+                var newArray: [DisplayItem] = []
                 for item in newItems {
                     let locDate = randomDate()
                     let finalStr = locDate + " " + item
-                    newArray.append(finalStr)
+                    let item = DisplayItem(text: finalStr)
+                    
+                    newArray.append(item)
                 }
                 displayedItems.append(contentsOf: newArray)
                 
@@ -186,4 +188,9 @@ public struct FastRequest2View: View {
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return formatter.string(from: finalDate)
     }
+}
+
+struct DisplayItem: Identifiable, Equatable {
+    let id = UUID()
+    let text: String
 }
