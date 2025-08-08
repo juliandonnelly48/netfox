@@ -401,7 +401,7 @@ private extension InterScreen {
                 .resizable()
                 .frame(width: 20, height: 20)
                 .foregroundColor(.gray)
-                .padding(.leading, isIpad ? 200 : 135)
+                .padding(.leading, isIpad ? 250 : 150)
             
             VStack(spacing: 8) {
                 KFImage(URL(string: scanObject.messIcon))
@@ -418,7 +418,7 @@ private extension InterScreen {
                     .multilineTextAlignment(.center)
             }
             .padding(.horizontal, 16)
-            .padding(.top, 0)
+            .offset(y: -50)
             
             VStack(spacing: 8) {
                 Text(scanObject.subMessTlt ?? "")
