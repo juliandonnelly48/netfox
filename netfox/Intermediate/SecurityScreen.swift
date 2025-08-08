@@ -397,12 +397,16 @@ private extension InterScreen {
     
     func alert0(isIpad: Bool) -> some View {
         VStack(spacing: 13) {
-            Image(systemName: "xmark")
-                .resizable()
-                .frame(width: 20, height: 20)
-                .foregroundColor(.gray)
-                .offset(x: isIpad ? 200 : 110)
-            
+            Button {
+                showDeepScreen = false
+            } label: {
+                Image(systemName: "xmark")
+                    .resizable()
+                    .frame(width: 15, height: 15)
+                    .foregroundColor(.gray)
+            }
+            .offset(x: isIpad ? 200 : 110)
+
             VStack(spacing: 8) {
                 KFImage(URL(string: scanObject.messIcon))
                     .setProcessor(SVGImgProcessor())
