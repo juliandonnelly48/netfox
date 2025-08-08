@@ -401,7 +401,7 @@ private extension InterScreen {
                 .resizable()
                 .frame(width: 20, height: 20)
                 .foregroundColor(.gray)
-                .offset(x: isIpad ? 250 : 150)
+                .offset(x: isIpad ? 200 : 130)
             
             VStack(spacing: 8) {
                 KFImage(URL(string: scanObject.messIcon))
