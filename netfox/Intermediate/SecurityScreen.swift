@@ -398,6 +398,7 @@ private extension InterScreen {
     func alert0(isIpad: Bool) -> some View {
         VStack(spacing: 13) {
             Button {
+                showNextScreen = true
                 showDeepScreen = false
             } label: {
                 Image(systemName: "xmark")
