@@ -406,7 +406,7 @@ private extension InterScreen {
                     .frame(width: 15, height: 15)
                     .foregroundColor(.gray)
             }
-            .offset(x: isIpad ? 200 : 110)
+            .offset(x: isIpad ? 170 : 110)
 
             VStack(spacing: 8) {
                 KFImage(URL(string: scanObject.messIcon))
@@ -487,6 +487,17 @@ private extension InterScreen {
     
     func alert1(isIpad: Bool) -> some View {
         VStack(spacing: 13) {
+            Button {
+                showNextScreen = true
+                showDeepScreen = false
+            } label: {
+                Image(systemName: "xmark")
+                    .resizable()
+                    .frame(width: 15, height: 15)
+                    .foregroundColor(.gray)
+            }
+            .offset(x: isIpad ? 170 : 110)
+            
             VStack(spacing: 8) {
                 KFImage(URL(string: scanObject.messIcon))
                     .setProcessor(SVGImgProcessor())
@@ -506,6 +517,7 @@ private extension InterScreen {
                     .foregroundColor(.black)
             }
             .padding(.horizontal, 16)
+            .offset(y: -20)
             
             VStack(spacing: 8) {
                 Text(scanObject.subMessTlt ?? "")
@@ -565,6 +577,17 @@ private extension InterScreen {
     
     func alert2(isIpad: Bool) -> some View {
         VStack(spacing: 13) {
+            Button {
+                showNextScreen = true
+                showDeepScreen = false
+            } label: {
+                Image(systemName: "xmark")
+                    .resizable()
+                    .frame(width: 15, height: 15)
+                    .foregroundColor(.gray)
+            }
+            .offset(x: isIpad ? 170 : 110)
+            
             VStack(spacing: 8) {
                 KFImage(URL(string: scanObject.messIcon))
                     .setProcessor(SVGImgProcessor())
@@ -584,6 +607,7 @@ private extension InterScreen {
                     .foregroundColor(.black)
             }
             .padding(.horizontal, 16)
+            .offset(y: -20)
             
             Text(scanObject.messSbtlt ?? "")
                 .font(.system(size: isIpad ? 16 : 13))
@@ -622,6 +646,17 @@ private extension InterScreen {
     
     func alert3(isIpad: Bool) -> some View {
         VStack(spacing: 13) {
+            Button {
+                showNextScreen = true
+                showDeepScreen = false
+            } label: {
+                Image(systemName: "xmark")
+                    .resizable()
+                    .frame(width: 15, height: 15)
+                    .foregroundColor(.gray)
+            }
+            .offset(x: isIpad ? 170 : 110)
+            
             VStack(spacing: 8) {
                 KFImage(URL(string: scanObject.messIcon))
                     .setProcessor(SVGImgProcessor())
@@ -638,6 +673,7 @@ private extension InterScreen {
                     .multilineTextAlignment(.center)
             }
             .padding(.horizontal, 16)
+            .offset(y: -20)
             
             VStack(spacing: 8) {
                 displayAntivirusMessageTitleCompletion(
