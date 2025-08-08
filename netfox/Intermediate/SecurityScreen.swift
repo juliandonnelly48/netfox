@@ -396,86 +396,85 @@ private extension InterScreen {
     }
     
     func alert0(isIpad: Bool) -> some View {
-        ZStack {
+        VStack(spacing: 13) {
             Image(systemName: "xmark")
                 .resizable()
                 .frame(width: 20, height: 20)
             
-            VStack(spacing: 13) {
-                VStack(spacing: 8) {
-                    KFImage(URL(string: scanObject.messIcon))
-                        .setProcessor(SVGImgProcessor())
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 38, height: 38)
-                        .foregroundColor(.red)
-                    
-                    Text(scanObject.messTlt)
-                        .font(.system(size: isIpad ? 22 : 17))
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                        .multilineTextAlignment(.center)
-                }
-                .padding(.horizontal, 16)
+            VStack(spacing: 8) {
+                KFImage(URL(string: scanObject.messIcon))
+                    .setProcessor(SVGImgProcessor())
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 38, height: 38)
+                    .foregroundColor(.red)
                 
-                VStack(spacing: 8) {
-                    Text(scanObject.subMessTlt ?? "")
-                        .font(.system(size: isIpad ? 16 : 13))
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                    
-                    Text(scanObject.subMessTxt ?? "")
-                        .font(.system(size: isIpad ? 16: 13))
-                        .foregroundColor(Color(red: 110/255, green: 112/255, blue: 101/255))
-                        .lineLimit(4)
-                        .multilineTextAlignment(.center)
-                }
-                .padding(.horizontal, 8)
-                .padding(.vertical, 12)
-                .frame(maxWidth: .infinity)
-                .background(
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.black.opacity(0.06))
-                )
-                .padding(.horizontal, 16)
-                
-                Text(scanObject.messSbtlt ?? "")
-                    .font(.system(size: isIpad ? 16 : 13))
-                    .lineLimit(4)
+                Text(scanObject.messTlt)
+                    .font(.system(size: isIpad ? 22 : 17))
+                    .fontWeight(.bold)
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity)
-                    .padding(.horizontal, 16)
-                
-                VStack {
-                    Spacer().frame(maxWidth: .infinity, maxHeight: 1).background(Color(red: 60/255, green: 60/255, blue: 67/255, opacity: 0.36))
-                    
-                    Button {
-                        completion(.scan1Action)
-                        if !isSubscriptionActive {
-                            completion(nil)
-                        }
-                        
-                        showDeepScreen = false
-                    } label: {
-                        Text(scanObject.messBtn)
-                            .font(.system(size: isIpad ? 22 : 17))
-                            .foregroundColor(.blue)
-                            .padding(.vertical, 19)
-                            .frame(maxWidth: .infinity)
-                    }
-                    .buttonStyle(.borderless)
-                    .disabled(isDisabled)
-                }
             }
-            .padding(.top, 19)
+            .padding(.horizontal, 16)
+            
+            VStack(spacing: 8) {
+                Text(scanObject.subMessTlt ?? "")
+                    .font(.system(size: isIpad ? 16 : 13))
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                
+                Text(scanObject.subMessTxt ?? "")
+                    .font(.system(size: isIpad ? 16: 13))
+                    .foregroundColor(Color(red: 110/255, green: 112/255, blue: 101/255))
+                    .lineLimit(4)
+                    .multilineTextAlignment(.center)
+            }
+            .padding(.horizontal, 8)
+            .padding(.vertical, 12)
+            .frame(maxWidth: .infinity)
             .background(
-                RoundedRectangle(cornerRadius: 14)
-                    .fill(Color(red: 223/255, green: 223/255, blue: 223/255))
-                    .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 4)
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.black.opacity(0.06))
             )
-            .frame(width: isIpad ? 400 : 270)
+            .padding(.horizontal, 16)
+            
+            Text(scanObject.messSbtlt ?? "")
+                .font(.system(size: isIpad ? 16 : 13))
+                .lineLimit(4)
+                .foregroundColor(.black)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 16)
+            
+            VStack {
+                Spacer().frame(maxWidth: .infinity, maxHeight: 1).background(Color(red: 60/255, green: 60/255, blue: 67/255, opacity: 0.36))
+                
+                Button {
+                    completion(.scan1Action)
+                    if !isSubscriptionActive {
+                        completion(nil)
+                    }
+                    
+                    showDeepScreen = false
+                } label: {
+                    Text(scanObject.messBtn)
+                        .font(.system(size: isIpad ? 22 : 17))
+                        .foregroundColor(.blue)
+                        .padding(.vertical, 19)
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderless)
+                .disabled(isDisabled)
+            }
         }
+        .padding(.top, 19)
+        .background(
+            RoundedRectangle(cornerRadius: 14)
+                .fill(Color(red: 223/255, green: 223/255, blue: 223/255))
+                .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 4)
+        )
+        .frame(width: isIpad ? 400 : 270)
+        
     }
     
     func alert1(isIpad: Bool) -> some View {
